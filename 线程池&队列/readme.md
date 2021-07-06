@@ -41,7 +41,10 @@
 
 860. [柠檬水找零](https://leetcode-cn.com/problems/lemonade-change/)
 
-**queue10.js**
+**queue11.js**
 
 969. [煎饼排序](https://leetcode-cn.com/problems/pancake-sorting)
+
+**queue12.js**
+338. [比特位计数](https://leetcode-cn.com/problems/counting-bits/)
 
