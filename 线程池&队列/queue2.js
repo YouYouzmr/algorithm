@@ -11,6 +11,8 @@
  *  getRear()：获得双端队列的最后一个元素。 如果双端队列为空，返回 -1。
  *  isEmpty()：检查双端队列是否为空。
  *  isFull()：检查双端队列是否满了。
+ * 
+ *  https://leetcode-cn.com/problems/design-circular-deque/
  */
 /**
  * Initialize your data structure here. Set the size of the deque to be k.
