@@ -11,6 +11,7 @@
  *  int popMiddle() 将 正中间 的元素从队列中删除并返回值，如果删除之前队列为空，那么返回 -1 。 
  *  int popBack() 将 最后面 的元素从队列中删除并返回值，如果删除之前队列为空，那么返回 -1 。
  * 
+ *  https://leetcode-cn.com/problems/design-front-middle-back-queue/
  */
 /**
  * 节点：
