@@ -35,3 +35,19 @@ function getResult(root, k, ans) {
     getResult(root.left, k+1, ans)
     getResult(root.right, k+1, ans)
 }
+
+// 第二种队列
+var levelOrder = function(root) {
+    let ans = []
+    if(root==null) return ans
+    let queue = []
+    queue.push(root)
+    while(!queue.length) {
+        let head = queue[0]
+        ans.push(head.val)
+        head.left && queue.push(head.left)
+        head.right && queue.push(head.right)
+        queue.shift()
+    }
+    return ans
+}
