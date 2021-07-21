@@ -74,6 +74,8 @@ int main(int argc, char *argv[]) {
 
 ## 完全二叉树
 
+**连续存储空间**
+
 **完全二叉树 **complete binary tree：最后一层右测缺少节点
 
 **完美二叉树** perfect binary tree: 每一层节点都满了
@@ -141,6 +143,14 @@ int fib(int n) {
 指针域(k * n)
 
 浪费边数：k*n-(n-1) = (k-1)n+1       k叉树\n个节点
+
+
+
+### 沉默成本
+
+
+
+
 
 
 
