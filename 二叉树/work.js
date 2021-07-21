@@ -43,6 +43,5 @@ function afterOrder(order, ans) {
     ans.push(order.val)
 }
 
-// import data from './data.js'
 getOrder(preOrder, inOrder)
 // total: – 6756418380
