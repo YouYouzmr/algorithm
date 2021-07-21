@@ -61,3 +61,50 @@ var getDP = function(root, dp) {
     dp[1][1] = dp[0][1]
     return
 }
+
+/**
+ * @param {TreeNode} root
+ * @return {number}
+ */
+/**
+ * a-[0][0]: 当前节点和父节点都不放zhi
+ * b-[0][1]: zhi
+ * c-[1][0]: 
+ * d-[1][1]: 
+ */
+var minCameraCover = function(root) {
+    let [a, b, c, d] = dfs(root)
+    return Math.min(a, b)
+};
+function dfs(root) {
+    if(!root) return [0, 0, 10000, 10000]
+    if(!root.left && !root.right) return [10000, 0, 1, 1]
+    let [la, lb, lc, ld] = dfs(root.left)
+    let [ra, rb, rc, rd] = dfs(root.right)
+
+    let a = Math.min((la+rc),(lc+rc),(lc+ra))
+    let b = Math.min(a, la+ra)
+    let c = Math.min(lb+rb, ld+rd, lb+rd, ld+rb)
+    let d = b
+    return [a, b, c, d]
+}
+/**
+ * 状态 a：root 必须放置摄像头的情况下，覆盖整棵树需要的摄像头数目。
+ * 状态 b：覆盖整棵树需要的摄像头数目，无论 root 是否放置摄像头。
+ * 状态 c：覆盖两棵子树需要的摄像头数目，无论节点root 本身是否被监控到。
+ */
+var minCameraCover = function(root) {
+    const dfs = (root) => {
+        if (!root) {
+            return [Math.floor(Number.MAX_SAFE_INTEGER / 2), 0, 0];
+        }
+        const [la, lb, lc] = dfs(root.left);
+        const [ra, rb, rc] = dfs(root.right);
+        const a = lc + rc + 1;
+        const b = Math.min(a, Math.min(la + rb, ra + lb));
+        const c = Math.min(a, lb + rb);
+        return [a, b, c];
+    }
+
+    return dfs(root)[1];
+};
