@@ -13,10 +13,11 @@
 var KthLargest = function(k, nums) {
     this.k = k;
     this.nums = nums
-    this.heap = new Heap(1)
-    for(let i=0; i<nums.length; i++) {
-        this.heap.push(nums[i])
-    } 
+    this.heap = new Heap(2)
+    for(let i=0; i<this.nums.length; i++) {
+        this.heap.push(this.nums[i])
+        if(this.heap.size()>this.k) this.heap.pop()
+    }
 };
 
 /** 
@@ -25,6 +26,8 @@ var KthLargest = function(k, nums) {
  */
 KthLargest.prototype.add = function(val) {
     this.heap.push(val)
+    this.heap.size()>this.k && this.heap.pop()
+    return this.heap.data[0]
 };
 
 /**

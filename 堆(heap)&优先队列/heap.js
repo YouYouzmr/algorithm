@@ -41,7 +41,7 @@ class Heap {
     }
     // 小顶堆
     shift_up_less(ind) {
-        while(ind && this.data[Math.floor((ind-1)/2) > this.data[ind]]) {
+        while(ind && this.data[Math.floor((ind-1)/2)] > this.data[ind]) {
             this.swap(Math.floor((ind-1)/2), ind)
             ind = Math.floor((ind-1)/2)
         }
@@ -87,6 +87,10 @@ class Heap {
         }
 
         return arr
+    }
+
+    top() {
+        return this.data[0]
     }
 }
 

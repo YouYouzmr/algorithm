@@ -16,6 +16,31 @@
 
     </ul>
     <script src="./heap.js"></script>
-    <script src="./1046.js"></script>
+    <script src="./373.js"></script>
+    <script>
+        let heap = new Heap(2)
+        let operate = document.getElementById('operate')
+        let value = document.getElementById('value')
+        let submit = document.getElementById('submit')
+        let result = document.getElementById('result')
+
+        submit.addEventListener("click", function(){
+            let key = Number(operate.value)
+            switch(key) {
+                case 1:
+                    heap.push(Number(value.value))
+                    printf()
+                    break
+                case 2:
+                    heap.pop()
+                    printf()
+                    break
+            }
+        }, false)
+
+        function printf() {
+            result.innerHTML += `<li>${heap.output()}</li>`
+        }
+    </script>
 </body>
 </html>
