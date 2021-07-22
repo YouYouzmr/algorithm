@@ -39,7 +39,7 @@ var lastStoneWeight = function(stones) {
         let reduce = Math.abs(first-second)
         heap.push(reduce)
     }
-    console.log(heap)
+    
     return heap.output()[0]
 };
 

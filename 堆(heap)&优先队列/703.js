@@ -27,7 +27,7 @@ var KthLargest = function(k, nums) {
 KthLargest.prototype.add = function(val) {
     this.heap.push(val)
     this.heap.size()>this.k && this.heap.pop()
-    return this.heap.data[0]
+    return this.heap.top()
 };
 
 /**
