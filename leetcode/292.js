@@ -10,10 +10,15 @@
  * 假设你们每一步都是最优解。请编写一个函数，来判断你是否可以在给定石头数量为 n 的情况下赢得游戏。
  * 如果可以赢，返回 true；否则，返回 false 。
  */
+
 /**
  * @param {number} n
  * @return {boolean}
  */
+
+/**
+ * Nim 游戏： https://baike.baidu.com/item/Nim%E6%B8%B8%E6%88%8F/6737105?fr=aladdin
+ */
 var canWinNim = function(n) {
-    return n%4>0
+    return n%4 > 0
 };
