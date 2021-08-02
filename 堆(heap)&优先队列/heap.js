@@ -35,7 +35,7 @@ class Heap {
         this.swap(0, this.cnt-1);
         this.cnt -= 1;
         this.shift_down(0);
-        return this.data[0]
+        return ret
     }
 
     shift_up(ind) {
