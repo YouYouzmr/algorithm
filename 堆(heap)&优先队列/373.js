@@ -30,8 +30,7 @@ var kSmallestPairs = function(nums1, nums2, k) {
     }
     return heap.output()
 };
-
-let nums1 = [1, 1, 2];
-let nums2 = [1, 2, 3]
-let result = kSmallestPairs(nums1, nums2, 2)
+let nums1 = [1, 2, 3, 4];
+let nums2 = [2, 3, 4, 5, 6]
+let result = kSmallestPairs(nums1, nums2, 20)
 console.log(result)

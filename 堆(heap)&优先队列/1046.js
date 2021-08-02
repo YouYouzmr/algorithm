@@ -40,7 +40,7 @@ var lastStoneWeight = function(stones) {
         heap.push(reduce)
     }
     
-    return heap.output()[0]
+    return heap.top()
 };
 
 let arr = [1,3]
