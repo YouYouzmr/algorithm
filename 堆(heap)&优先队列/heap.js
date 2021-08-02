@@ -30,11 +30,12 @@ class Heap {
 
     pop() {
         if(this.size()==0) return;
+        let ret = this.data[0]
         // 顶部弹出，最后一位补位
         this.swap(0, this.cnt-1);
         this.cnt -= 1;
         this.shift_down(0);
-        return
+        return this.data[0]
     }
 
     shift_up(ind) {
