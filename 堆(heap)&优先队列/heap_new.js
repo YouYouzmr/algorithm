@@ -9,7 +9,7 @@
  * @param compare: 
  */
 
- class Heap {
+class Heap {
     constructor(compare) {
         this.data = []
         this.cnt = 0
@@ -65,8 +65,7 @@
         for(let i=0; i<this.cnt; i++) {
             arr.push(this.data[i])
         }
-        let result = arr.sort((a, b)=> this.compare(a, b))
-        return result
+        return arr.sort((a, b)=>compare(a, b))
     }
 
     top() {

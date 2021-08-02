@@ -10,37 +10,24 @@
  * @return {string[]}
  */
  var topKFrequent = function(words, k) {
-    let heap = new Heap(compare)
-    let mapArr = {}
-    for(let i=0; i<words.length; i++) {
-        mapArr[words[i]] = mapArr[words[i]]? mapArr[words[i]]+1: 1
+    // 统计单词出现的频次
+    const cnt = new Map();
+    for (const word of words) {
+        cnt.set(word, (cnt.get(word) || 0) + 1);
     }
-
-    for(let key in mapArr) {
-        heap.push({
-            [key]: mapArr[key]
-        })
-        if(heap.size()>k) heap.pop()
+    const rec = [];
+    for (const entry of cnt.keys()) {
+        rec.push(entry);
     }
-    mapArr = null
-    let result = []
-    for(let i=heap.cnt-1; i>=0; i--) {
-        result.push(Object.keys(heap.data[i])[0])
-    }
-    return heap.output().map(val=> Object.keys(val)[0]).reverse()
+    rec.sort((word1, word2) => {
+        return cnt.get(word1) === cnt.get(word2) ? word1.localeCompare(word2) : cnt.get(word2) - cnt.get(word1);
+    })
+    return rec.slice(0, k);
 };
 
-function compare(parentData, childData) {
-    let a = Object.keys(parentData)[0]
-    let b = Object.keys(childData)[0]
-    if(parentData[a]-childData[b]!==0) return parentData[a] > childData[b]
-    // 如果相等按字母排序
-    if(a < b) return 1;
-    if(a > b) return -1
-    return 0
-}
+
 
 let arr = ["i", "love", "leetcode", "i", "love", "coding"]
 
-let k = 4
-console.log(topKFrequent(arr, k))
+let k = 1
+console.log(topKFrequent(arr, 3))
