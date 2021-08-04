@@ -19,22 +19,34 @@ var maximumScore = function(a, b, c) {
     if(b > c) [b, c] = [c, b]
 
     let ans = 0
-    while(a > 0 && c - b > 0) {
-        a--
-        c--
-        ans++
+    ans = Math.min(a, c-b)
+    // while(a > 0 && c - b > 0) {
+    //     a--
+    //     c--
+    //     ans++
+    // }
+    a -= ans
+    b -= ans
+
+    if(a > 1) {
+        let reduce = a % 2 == 0 ? a/2 : (a-1)/2
+        ans += reduce * 2
+        c -= reduce
+        b -= reduce
     }
-    while(a > 1) {
-        c--
-        b--
-        a -= 2
-        ans += 2
-    }
-    while (c > 0 && b > 0) {
-        ans++
-        c--
-        b--
-    }
+    // while(a > 1) {
+    //     c--
+    //     b--
+    //     a -= 2
+    //     ans += 2
+    // }
+
+    and += b
+    // while (c > 0 && b > 0) {
+    //     ans++
+    //     c--
+    //     b--
+    // }
 
     return ans
 };
