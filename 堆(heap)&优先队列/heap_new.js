@@ -65,7 +65,7 @@ class Heap {
         for(let i=0; i<this.cnt; i++) {
             arr.push(this.data[i])
         }
-        return arr.sort((a, b)=>compare(a, b))
+        return arr.sort(this.compare)
     }
 
     top() {
