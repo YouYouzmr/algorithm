@@ -24,7 +24,7 @@ class FriendMoment {
         for(let i=0; i<=n; i++) {
             this.boss[i] = i
         }
-        this.size = Array(n+1).fill(1)
+        // this.size = Array(n+1).fill(1)
     }
 
     setRelate(a, b, c) {
@@ -37,19 +37,24 @@ class FriendMoment {
 
     find(x) {
         if(this.boss[x]===x) return x;
-        return this.find(this.boss[x])
+        // 路径压缩
+        let root = this.find(this.boss[x])
+        this.boss[x] = root
+        return root
     }
 
     merge(a, b) {
         let fa = this.find(a), fb = this.find(b);
         if(fa == fb) return;
-        if(this.size[fa] < this.size[fb]) {
-            this.boss[fa] = fb;
-            this.size[fb] += this.size[fa]
-        } else {
-            this.boss[fb] = fa;
-            this.size[fa] += this.size[fb]
-        }
+        // 只有路径压缩
+        this.boss[fa] = this.boss[fb]
+        // if(this.size[fa] < this.size[fb]) {
+        //     this.boss[fa] = fb;
+        //     this.size[fb] += this.size[fa]
+        // } else {
+        //     this.boss[fb] = fa;
+        //     this.size[fa] += this.size[fb]
+        // }
         return
     }
 }
