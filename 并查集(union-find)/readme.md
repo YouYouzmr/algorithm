@@ -122,12 +122,14 @@ init main() {
 * a 作为父节点： (la + lb + sb)/(sa + sb) 
 * b 作为父节点： (la + lb + sa)/(sa + sb) 
 
-
+#### 按质优化 Quick-Union算法
 
 ```c++
+// weighted_quick_union
 class UnionSet {
 public: 
-    //       
+    // fa: 记录当前节点父节点
+    // size: 记录节点总数
     int *fa, *size， n;
     UnionSet(int n): n(n) {
         fa = new int[n+1];
