@@ -1,5 +1,5 @@
 // 并查集模板
-class unionSet {
+class UnionSet {
     constructor (n) {
         this.boss = Array(n+1)
         for(let i=0; i<=n; i++) {
