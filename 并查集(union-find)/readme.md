@@ -237,3 +237,16 @@ public:
 }
 ```
 
+### 上边四种算法比较
+
+| Algorithm                                  | Constructor | Union                      | Find                       |
+| ------------------------------------------ | ----------- | -------------------------- | -------------------------- |
+| Quick-Find                                 | N           | N                          | 1                          |
+| Quick-Union                                | N           | Tree height                | Tree height                |
+| Weighted Quick-Union                       | N           | lgN                        | lgN                        |
+| Weighted Quick-Union with Path Compression | N           | Very near to 1 (amortized) | Very near to 1 (amortized) |
+
+
+
+**并查集是一类抽象化程度很高的数据结构**
+
