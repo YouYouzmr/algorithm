@@ -163,3 +163,77 @@ public:
 
 
 
+#### weighted_quick_union 路径压缩优化
+
+``` c++
+class UnionSet {
+public: 
+    // fa: 记录当前节点父节点
+    // size: 记录节点总数
+    int *fa, *size， n;
+    UnionSet(int n): n(n) {
+        fa = new int[n+1];
+        size = new int[n+1];
+        for(int i=0; i<=n; i++) {
+			fa[i] = i;
+            size[i] = 1;
+        }
+    }
+    
+    int find(int x) {
+		if(fa[x]==x) return x;
+        // 路径压缩优化
+        int root = find(fa[x]);
+        fa[x] = root;
+        return root;
+    }
+    
+    void merge(int a, int b) {
+        int ra = find(a), rb = find(b);
+        if(ra == rb) return;
+        if(size[ra] < size[rb]) {
+            fa[ra] = rb;
+            size[rb] += size[ra];
+        }else {
+            fa[rb] = ra;
+            size[ra] += size[rb];
+        }
+        
+        return;
+    }
+}
+```
+
+
+
+#### 只有路径压缩
+
+```c++
+class UnionSet {
+public: 
+    // fa: 记录当前节点父节点
+    int *fa， n;
+    UnionSet(int n): n(n) {
+        fa = new int[n+1];
+        for(int i=0; i<=n; i++) {
+			fa[i] = i;
+        }
+    }
+    
+    int find(int x) {
+		if(fa[x]==x) return x;
+        // 路径压缩优化
+        int root = find(fa[x]);
+        fa[x] = root;
+        return root;
+    }
+    
+    void merge(int a, int b) {
+        int ra = find(a), rb = find(b);
+        if(ra == rb) return;
+        fa[ra] = fa[rb]
+        return;
+    }
+}
+```
+
