@@ -24,7 +24,6 @@ class FriendMoment {
         for(let i=0; i<=n; i++) {
             this.boss[i] = i
         }
-        console.log(this.boss)
         this.size = Array(n+1).fill(1)
     }
 
