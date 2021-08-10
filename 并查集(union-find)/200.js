@@ -31,6 +31,7 @@ var numIslands = function(grid) {
     let ans = 0;
     for(let i=0; i<n; i++) {
         for(let j=0; j<m; j++) {
+            // 统计岛屿的数量过滤水的集合
             if(grid[i][j]==='1' && union.get(ind(i, j))== ind(i, j)) ans+= 1
         }
     }
