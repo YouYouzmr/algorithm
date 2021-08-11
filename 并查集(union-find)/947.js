@@ -18,34 +18,31 @@
  * @param {number[][]} stones
  * @return {number}
  */
+/**
+ * 最大移除数量等于：石头总数 - 集合数
+ * 每个集合剩余一块即可
+ */
 var removeStones = function(stones) {
     let n = stones.length;
+    let ind_x = new Map()
+    let ind_y = new Map()
     let union = new UnionSet(n)
     for(let i=0; i<n; i++) {
-        for(let j=i+1; j<n; j++) {
-            if(stones[i][0]===stones[j][0] || stones[i][1]===stones[j][1]) union.merge(i, j)
-        }
+        let x = stones[i][0]
+        let y = stones[i][1]
+
+        if(ind_x.has(x)) union.merge(i, ind_x.get(x))
+        if(ind_x.has(y)) union.merge(i, ind_y.get(y))
+        ind_x.set(x, i)
+        ind_y.set(y, i)
     }
-    console.log(union)
+    let res = 0
+    for(let i=0; i<n; i++) {
+        if(union.get(i)===i) res += 1
+    }
+
+    return stones.length - res 
 };
-
-
-class UnionSet {
-    constructor(n) {
-        this.boss = Array(n+1)
-        for(let i=0; i<=n; i++) {
-            this.boss[i] = i
-        }
-    }
-
-    get(x) {
-        return this.boss[x] = this.boss[x]===x? x: this.get(this.boss[x])
-    }
-
-    merge(i, j) {
-        this.boss[this.get(i)] = this.get(j)
-    }
-}
 
 let stones = [[0,0],[0,1],[1,0],[1,2],[2,1],[2,2]]
 removeStones(stones)
