@@ -25,7 +25,7 @@ var makeConnected = function(n, connections) {
 
     let union = new UnionSet(n-1)
     for(let i=0; i<connections.length; i++) {
-        if(union.get(connections[i][0]) !== union.get(connections[i][1])) union.merge(connections[i][0], connections[i][1])
+        union.merge(connections[i][0], connections[i][1])
     }
     let res = 0
     // 计算有几个集合
