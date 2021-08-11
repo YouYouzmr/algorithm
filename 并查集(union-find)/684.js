@@ -18,5 +18,16 @@
  * @return {number[]}
  */
 var findRedundantConnection = function(edges) {
-
+    let n = edges.length
+    let union = new UnionSet(n)
+    for(let i=0; i<n; i++) {
+        // 如果两个元素没在一个集合中则merge
+        if(union.get(edges[i][0]) !== union.get(edges[i][1])) union.merge(edges[i][0], edges[i][1])
+        // 在一个集合中，表示当前两个元素在一个闭环中,是一条附加边
+        else return edges[i]
+    }
 };
+
+let edges = [[1,2], [1,3], [2,3]]
+
+console.log(findRedundantConnection(edges))
