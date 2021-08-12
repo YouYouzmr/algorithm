@@ -21,6 +21,8 @@
 /**
  * 最大移除数量等于：石头总数 - 集合数
  * 每个集合剩余一块即可
+ * 
+ * 剩余数量：至少等于集合数量
  */
 var removeStones = function(stones) {
     let n = stones.length;
