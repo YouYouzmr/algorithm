@@ -21,29 +21,6 @@
  * @return {number}
  */
 var minSwapsCouples = function(row) {
-    let n = row.length
-    let union = new UnionSet(n/2)
-
-    for(let i=0; i<n; i+=2) {
-        const l = Math.floor(row[i]/2)
-        const r = Math.floor(row[i+1]/2)
-        union.merge(l, r)
-    }
-
-    const map = new Map()
-    for(let i=0; i<n/2; i++) {
-        const fx = union.get(i)
-        if(map.has(fx)) {
-            map.set(fx, map.get(fx) + 1)
-        } else {
-            map.set(fx, 1)
-        }
-    }
-
-    let ret = 0
-    for(const [f, sz] of map.entries()) {
-        ret += sz -1
-    }
-
+    
     return ret
 };
