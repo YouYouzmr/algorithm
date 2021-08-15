@@ -21,18 +21,24 @@
 /**
  * 最大移除数量等于：石头总数 - 集合数
  * 每个集合剩余一块即可
+ * 
+ * 剩余数量：至少等于集合数量
  */
 var removeStones = function(stones) {
     let n = stones.length;
+    // x轴上出现的石头
     let ind_x = new Map()
+    // y轴上出现的石头
     let ind_y = new Map()
     let union = new UnionSet(n)
     for(let i=0; i<n; i++) {
         let x = stones[i][0]
         let y = stones[i][1]
-
+        // x上出现过，连接
         if(ind_x.has(x)) union.merge(i, ind_x.get(x))
+        // y上出现过，连接
         if(ind_x.has(y)) union.merge(i, ind_y.get(y))
+
         ind_x.set(x, i)
         ind_y.set(y, i)
     }
