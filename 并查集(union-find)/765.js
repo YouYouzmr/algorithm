@@ -20,30 +20,37 @@
  * @param {number[]} row
  * @return {number}
  */
+/**
+ * 思路：
+ * 正确的cp是一奇一偶；并且 奇数 = 偶数+1 && 奇数/2 == 偶数/2
+ * 否则需要将两个编号除2后进行联通，进行交换
+ * 当n-1对配对成功，最后一对也会配对成功
+ * 只需要记录联通次数就可以得到调整的次数
+ */
 var minSwapsCouples = function(row) {
     let n = row.length
-    let union = new UnionSet(n/2)
+    let N = n >> 1; // 右移一位 ，相当于除2
+    let union = new UnionSet(N)
 
     for(let i=0; i<n; i+=2) {
-        const l = Math.floor(row[i]/2)
-        const r = Math.floor(row[i+1]/2)
-        union.merge(l, r)
+        union.merge(row[i]/2>>1, row[i+1]/2>>1)
     }
 
-    const map = new Map()
-    for(let i=0; i<n/2; i++) {
-        const fx = union.get(i)
-        if(map.has(fx)) {
-            map.set(fx, map.get(fx) + 1)
+    const cpMap = new Map()
+    // 统计每个集合的数量
+    for(let i=0; i<N; i++) {
+        const father = union.get(i)
+        if(cpMap.has(father)) {
+            cpMap.set(father, cpMap.get(father) + 1)
         } else {
-            map.set(fx, 1)
+            cpMap.set(father, 1)
         }
     }
 
     let ret = 0
-    for(const [f, sz] of map.entries()) {
-        ret += sz -1
+    // 计算集合需要移动的次数
+    for(const [father, size] of cpMap.entries()) {
+        ret += size - 1
     }
-
     return ret
 };

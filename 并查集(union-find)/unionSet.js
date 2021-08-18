@@ -1,7 +1,10 @@
 // 并查集模板
 class UnionSet {
     constructor (n) {
-        this.boss = Array(n+1).map((val, index)=> index)
+        this.boss = Array(n+1)
+        for(let i=0; i<=n; i++) {
+            this.boss[i] = i
+        }
     }
 
     get(x) {
