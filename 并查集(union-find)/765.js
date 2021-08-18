@@ -21,6 +21,28 @@
  * @return {number}
  */
 var minSwapsCouples = function(row) {
-    
+    let n = row.length
+    let union = new UnionSet(n/2)
+
+    for(let i=0; i<n; i+=2) {
+        const left = Math.floor(row[i]/2)
+        const right = Math.floor(row[i+1]/2)
+        union.merge(left, right)
+    }
+
+    const cpMap = new Map()
+    for(let i=0; i<n/2; i++) {
+        const father = union.get(i)
+        if(cpMap.has(father)) {
+            cpMap.set(father, cpMap.get(father) + 1)
+        } else {
+            cpMap.set(father, 1)
+        }
+    }
+
+    let ret = 0
+    for(const [father, size] of cpMap.entries()) {
+        ret += size - 1
+    }
     return ret
 };
