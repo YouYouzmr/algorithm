@@ -61,7 +61,7 @@ var findRedundantDirectedConnection = function(edges) {
     if(conflictIndex < 0) {
         return edges[cycleIndex]
     } else {
-        let cEdge = edges[conflictIndex]
+        let edget = edges[conflictIndex]
         if(cycleIndex < 0) {
             return edget[conflictIndex]
         } else {
