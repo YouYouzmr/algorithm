@@ -57,24 +57,33 @@ var findRedundantDirectedConnection = function(edges) {
             }
         }
     } 
-
+    // 只有环路则返回最后一个导致环的数组值
     if(conflictIndex < 0) {
         return edges[cycleIndex]
-    } else {
-        let edget = edges[conflictIndex]
+    } 
+    // 父节点冲突
+    else {
+        // 没有形成环路则返回最后一个导致冲突的数组即可
         if(cycleIndex < 0) {
-            return edget[conflictIndex]
-        } else {
-            retrun 
+            return edges[conflictIndex]
+        } 
+        // 形成环路且发生冲突
+        else {
+            // 找到发生冲突的线路
+            let edge = edges[conflictIndex]
+            // 第二个节点为父元素冲突的节点，
+            return [parent[edge[1]], edge[1]]
         }
     }
-    return []
 };
 
 
 class UnionSet {
     constructor (n) {
-        this.boss = Array(n+1).map((val, index)=> index)
+        this.boss = Array(n+1)
+        for(let i=0; i<=n; i++) {
+            this.boss[i] = i
+        }
     }
 
     get(x) {
@@ -88,4 +97,5 @@ class UnionSet {
 }
 
 let edges = [[1,2],[1,3],[2,3]]
+
 console.log(findRedundantDirectedConnection(edges))
