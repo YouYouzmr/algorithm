@@ -60,3 +60,21 @@ void quick_sort_v1(init *arr, int l, int r) {
 | 堆排序   | O(nlogn) | O(nlogn) | O(nlogn) | O(n)     | 稳定   |
 | 插入排序 | O(n²)    | O(n)     | O(n²)    | O(1)     | 稳定   |
 
+```c++
+// quick_sort_v2
+void quick_sort_v2(init *arr, int l, int r) {
+		if(l >= r) return;
+    int x = l, y = r, base = arr[l];
+    while(x < y) {
+        while(x < y && arr[y] >= base) y--;
+        if(x < y) arr[x++] = arr[y];
+        while(x < y && arr[x] < base) x++;
+        if(x < y) arr[y--] = arr[x]
+    }
+    arr[x] = base;
+    quick_sort_v2(arr, x+1, r);
+  	r = x - 1
+    return;
+}
+```
+
