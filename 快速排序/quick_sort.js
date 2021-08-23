@@ -9,7 +9,7 @@ var getmid = function (a, b, c) {
 
 function __quick_sort(arr, l, r) {
     while (r - l > threshold) {
-        let x = l, y = r, mid = Math.floor((x + y) / 2), base = getmid(arr[x], arr[mid], arr[y]);
+        let x = l, y = r, base = getmid(arr[x], arr[(x + y) >> 1], arr[y]);
         do {
             while (arr[x] < base) x++;
             while (arr[y] > base) y--;
