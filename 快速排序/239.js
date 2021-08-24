@@ -15,28 +15,26 @@
 var maxSlidingWindow = function(nums, k) {
     let ans = []
     if(k == 0) return ans
-    // 队列
+    // 队列 存储索引值
     let queue = []
     let i = 0
-    while(i < nums.length-k) {
-        if(queue.length && queue[0] + k <= i) {
+    while(i < nums.length) {
+        // 弹出队列中存储索引值不在窗口中的值
+        while(queue.length && queue[0] + k <= i) {
             queue.shift()
         }
-        
-        while(queue.length && nums[queue[queue.lenghth-1]] < nums[i]) {
-            queue.shift()
+        // 最后一个元素小于当前值弹出，确保queue[0]是当前窗口的最大值
+        while(queue.length && nums[queue[queue.length-1]] < nums[i]) {
+            queue.pop()
         }
-
-        // 存储索引值
+        // 当前值入队列
         queue.push(i)
-        console.log(queue)
         i++
         if(i >= k) ans.push(nums[queue[0]])
     }
-    console.log(ans)
     return ans
 };
 
-let nums = [1,3,-1,-3,5,3,6,7]
+let nums = [1,3,1,2,0,5]
 let k = 3
 maxSlidingWindow(nums, k)
