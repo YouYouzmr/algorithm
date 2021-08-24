@@ -6,7 +6,7 @@
 
  A - B;  B - C;  可以推出 A - C
 
-![](E:\self_project\algorithm\并查集(union-find)\img\1.png)
+![](./img/1.png)
 
 
 
@@ -17,7 +17,7 @@
 * 如果两个点颜色一样，证明联通，否则不联通
 * 这种做法叫做并查集的：【Quick-Find算法】
 
-![](E:\self_project\algorithm\并查集(union-find)\img\2.png)
+![](./img/2.png)
 
 #### Quick-find代码实现
 
@@ -102,7 +102,7 @@ init main() {
 
 
 
-![](E:\self_project\algorithm\并查集(union-find)\img\3.png)
+![](./img/3.png)
 
  
 
