@@ -1,7 +1,5 @@
 # 快速排序
 
-选个基准值，小于该值的放在前边，大于等于该值的放在后边。进行partition
-
 数组长度为n： 排序有 n! 种
 
 **分区思想 partition**
@@ -12,11 +10,7 @@
 
 ![](E:\self_project\algorithm\快速排序\1.jpg)
 
-基准值选择
-
-二叉树树高 logn 
-
-quick_sort_v1 版本
+**quick_sort_v1 版本**
 
 ``` c++
 // quick_sort_v1
