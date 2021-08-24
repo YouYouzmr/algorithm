@@ -8,7 +8,7 @@
 * 比较小于pivot放左边，大于放右边
 * 分区递归遍历
 
-![](https://github.com/YouYouzmr/algorithm/blob/master/%E5%BF%AB%E9%80%9F%E6%8E%92%E5%BA%8F/1.jpg)
+![](./1.jpg)
 
 **quick_sort_v1 版本**
 
