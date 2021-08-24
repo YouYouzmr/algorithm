@@ -12,11 +12,11 @@
 
 图片来源网络 [runoob](https://www.runoob.com/w3cnote/merge-sort.html)
 
-![](E:\self_project\algorithm\归并排序(Merge-sort)\img\1png.png)
+![](https://github.com/YouYouzmr/algorithm/blob/master/%E5%BD%92%E5%B9%B6%E6%8E%92%E5%BA%8F(Merge-sort)/img/1png.png)
 
-![](E:\self_project\algorithm\归并排序(Merge-sort)\img\2.png)
+![](https://github.com/YouYouzmr/algorithm/blob/master/%E5%BD%92%E5%B9%B6%E6%8E%92%E5%BA%8F(Merge-sort)/img/2.png)
 
-![](E:\self_project\algorithm\归并排序(Merge-sort)\img\3.png)
+![](https://github.com/YouYouzmr/algorithm/blob/master/%E5%BD%92%E5%B9%B6%E6%8E%92%E5%BA%8F(Merge-sort)/img/3.png)
 
 ### 代码
 
