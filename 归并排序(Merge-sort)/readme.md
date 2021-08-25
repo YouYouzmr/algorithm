@@ -20,31 +20,25 @@
 
 ### 代码
 
-``` c++
-void merge_sort(int *arr, int l, int r) {
+``` js
+var merge_sort = function(arr, l, r) {
     if(l >= r) return;
     let mid = (l + r) >> 1;
-    merge_sort(arr, l, mid); // left sort
-    merge_sort(arr, mid + 1, r); // right sort
-    // 临时存储空间
-    int *temp = (int *)malloc(sizeof(int) * (r - l + 1));
-    // 归并排序
-    int k = 0, p1 = l, p2 = mid + 1;
+    merge_sort(arr, l, mid)
+    merge_sort(arr, mid + 1, r)
+
+    let temp = []
+    let k = 0, p1 = l, p2 = mid + 1;
     while(p1 <= mid || p2 <= r) {
-        if((p1 <= mid && arr[p1] < arr[p2]) || (p2 > r)) {
-            temp[k++] = arr[p1++];
+        if((p1 <= mid && arr[p1] < arr[p2]) || p2 > r) {
+            temp[k++] = arr[p1++]
         } else {
-            temp[k++] = arr[p2++];
+            temp[k++] = arr[p2++]
         }
     }
-    
-    for(int i = l; i <= r; i++) arr[i] = temp[i - 1];
-    free(temp);
-    return;
-}
 
-int main() {
-	return 0;
+    for(let i=l; i <= r; i++) arr[i] = temp[i-l]
+    return;
 }
 ```
 
