@@ -32,7 +32,7 @@ var merge_sort = function(arr1, arr2) {
     let res = []
     let l = 0, r = 0, l1 = arr1.length - 1, l2 = arr2.length - 1;
     while(l <= l1 || r <= l2) {
-        if((r > l2) || (r <= l2 && arr1[l] < arr[r])) {
+        if((r > l2) || (r <= l2 && arr1[l] < arr2[r])) {
             res.push(arr1[l])
             l++
         } else {
