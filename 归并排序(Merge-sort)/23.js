@@ -41,3 +41,5 @@ var merge_sort = function(lists, l, r) {
 var mergeKLists = function(lists) {
     return merge_sort(lists, 0, lists.length-1)
 };
+
+// 第二种： 可以使用小顶堆+优先队列+归并实现
