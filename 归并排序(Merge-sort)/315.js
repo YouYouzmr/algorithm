@@ -10,28 +10,41 @@
  * @param {number[]} nums
  * @return {number[]}
  */
-let res = []
-var merge_sort = function(nums, l, r) {
+var temp = []
+var merge_sort = function(arr, l, r) {
     if(l >= r) return 0;
     let mid = (l + r) >> 1, ans = 0;
-    ans += merge_sort(nums, l, mid)
-    ans += merge_sort(nums, mid + 1, r)
+    merge_sort(arr, l, mid)
+    merge_sort(arr, mid + 1, r)
+    
+    // 处理左右两侧跨界的处理方法
 
-    // 排序
-    let temp = []
-    let k = 0, p1 = l, p2 = mid + 1;
+    // 从大到小排序
+    let k = l, p1 = l, p2 = mid + 1;
     while(p1 <= mid || p2 <= r) {
-        if(p2 > r || (p2 <= r && nums[p1] < nums[p2])) {
-            temp[k++] = nums[p1++]
+        if(p2 > r || (p2 <= r && arr[p1].val > arr[p2].val)) {
+            arr[p1].cnt += (r - p2 + 1)
+            temp[k++] = arr[p1++]
         } else {
-            temp[k++] = nums[p2++]
-            ans += (mid - p1 + 1)
+            temp[k++] = arr[p2++]
         }
     }
-    for(let i = l; l <= r; i++) nums[i] = temp[l-i]
-
+    for(let i = l; l <= r; i++) arr[i] = temp[i]
     return ans
 }
 var countSmaller = function(nums) {
+    var arr = []
+    for(let i = 0; i < nums.length; i++) {
+        arr.push({
+            val: nums[i],
+            index: i,
+            cnt: 0
+        })
+    }
     
+    merge_sort(arr, 0, arr.length);
+
+    let res = []
+    for(let x of arr) res[x.index] = x.cnt;
+    return res
 };

@@ -13,49 +13,54 @@
  * @param {number} upper
  * @return {number}
  */
-var merge_sort = function(sums, lower, upper, l, r) {
+var countTwoPart = function(sum, l1, r1, l2, r2, lower, upper) {
+    let ans = 0, k1 = l1, k2 = l1;
+    for(let j = l2; j <= r2; j++) {
+        let a = sum[j] - upper;
+        let b = sum[j] - lower;
+        // 左闭右开
+        while(k1 <= r1 && sum[k1] < a) k1++;
+        while(k2 <= r1 && sum[k2] <= b) k2++;
+        ans += (k2 - k1)
+    }
+
+    return ans
+}
+var merge_sort = function(sum, lower, upper, l, r) {
     if(l >= r) return 0;
     const mid = (l + r) >> 1;
-    const left = merge_sort(sums, lower, upper, l, mid);
-    const right = merge_sort(sums, lower, upper, mid + 1, r);
-
-    let ret = left + right;
-
-    // 统计下表对应的数量
-    let i = l;
-    let m = mid + 1;
-    let n = mid + 1;
-    while(i <= mid) {
-        while(m <= right && sums[m] - sums[i]  < lower) m++;
-        while(n <= right && sums[n] - sums[i] <= upper) n++;
-        ret += (n - m);
-        i++;
-    }
+    let ret = 0;
+    ret += merge_sort(sum, lower, upper, l, mid);
+    ret += merge_sort(sum, lower, upper, mid + 1, r);
+    ret += countTwoPart(sum, l, mid, mid + 1, r, lower, upper);
 
     // 合并排序数组
     let temp = []
     let k = 0, p1 = l, p2 = mid + 1;
     while(p1 <= mid || p2 <= r) {
-        if((p1 <= mid && sums[p1] < sums[p2]) || p2 > r) {
-            temp[k++] = sums[p1++]
+        if((p1 <= mid && sum[p1] < sum[p2]) || p2 > r) {
+            temp[k++] = sum[p1++]
         } else {
-            temp[k++] = sums[p2++]
+            temp[k++] = sum[p2++]
         }
     }
 
-    for(let i=l; i <= r; i++) sums[i] = temp[i-l]
+    for(let i=l; i <= r; i++) sum[i] = temp[i-l]
 
     return ret
 }
+/**
+ * 前缀和
+ * lower <= sum[j] - sum[i] <=upper (i < j)
+ * sum[i] >= sum[j] - upper
+ * sum[i] <= sum[j] - lower         
+ */
 var countRangeSum = function(nums, lower, upper) {
-    let sums = [];
+    let sum = [0];
+    // 前缀和
     for(let i = 0; i < nums.length; i++) {
-        let sum = 0;
-        for(let j = i; j < nums.length; j++){
-            sum += nums[j]
-            sums.push(sum)
-        }
+        sum[i + 1] = sum[i] + nums[i]
     }
 
-    return merge_sort(sums, lower, upper, 0, sums.length-1)
+    return merge_sort(sum, lower, upper, 0, sum.length-1)
 };

@@ -41,3 +41,17 @@ var lowestCommonAncestor = function(root, p, q) {
     dfs(root, p, q)
     return ans;
 };
+
+// 第二种
+var lowestCommonAncestor = function(root, p, q) {
+    if(root === null) return null;
+    if(root == q || root == p) return root;
+
+    let left = lowestCommonAncestor(root.left, p, q)
+    let right = lowestCommonAncestor(root.right, p, q)
+
+    if(left && right) return root;
+    if(left) return left;
+    
+    return right
+}

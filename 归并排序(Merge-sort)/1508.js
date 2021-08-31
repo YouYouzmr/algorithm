@@ -60,3 +60,9 @@ var rangeSum = function(nums, n, left, right) {
 
 let arr = [1,2,3,4]
 rangeSum(arr, 4, 1, 5)
+
+
+// 第二种： 多路合并 + 堆 + 优先队列
+var rangeSum = function(sums, left, right) {
+    
+}

@@ -19,21 +19,22 @@
  */
 var deepestLeavesSum = function(root) {
     let ans = 0;
-    let maxDeep = -1;
-    const dfs = (root, dep, cal) => {
+    let maxDeep = 0;
+    const dfs = (root, k) => {
         if(root === null) return;
-        dfs(root.left, dep+1, cal)
-        dfs(root.right, dep+1, cal)
-
-        if(cal === 'cal') {
-            (dep == maxDeep) && (ans += root.val)
-        } else {
-            maxDeep = Math.max(maxDeep, dep)
+        
+        if(k == maxDeep) ans += root.val;
+        if(k > maxDeep) {
+            maxDeep = k;
+            ans = root.val
         }
+        
+        dfs(root.left, k+1)
+        dfs(root.right, k+1)
+
+        return
     }
-    // 递归获取当前数得level
-    dfs(root, 0)
-    // 计算最底层数据和
-    dfs(root, 0, 'cal')
+    
+    dfs(root, 1)
     return ans
 };
