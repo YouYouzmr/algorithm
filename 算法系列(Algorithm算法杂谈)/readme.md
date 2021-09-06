@@ -14,6 +14,27 @@
 
 ## 基数排序
 
+基数排序 (Radix sort) 是一种非比较性整数排序算法。
+
+**基本思想**
+
+将整数按位数切割成不同的数字，然后按每个位数分别比较。基数排序的方法可以采用LSD或者MSD。
+
+* LSD：先从低位开始进行排序
+* MSD：先从高位开始进行排序
+
+**实现逻辑**
+
+如下图（从低位开始）：
+
+* 记录当前位置，0-9 出现的次数
+* 从后向前遍历，放入对应位置开辟出的空间
+* 重复上述步骤到，到最高位结束
+
+![](.\img\1.png)
+
+**代码实现**
+
 ``` c++
 #define low16(a) ((a) & 0xffff);
 #define __high16(a) (((a) & 0xffff0000) >> 16);
@@ -64,12 +85,25 @@ int main() {
 }
 ```
 
+**复杂度**
+
+* 时间复杂度：O(k*n)
+* 空间复杂度：O(k + N)
+* 稳定性：稳定
+
 
 
 ## 拓扑排序
+
+> Topological sorting for Directed Acyclic Graph (DAG) is a linear ordering of vertices such that for every directed edge u v, vertex u comes before v in the ordering. Topological Sorting for a graph is not possible if the graph is not a DAG.([link](https://www.geeksforgeeks.org/topological-sorting))
+
+即：拓扑排序是用来解决有向无环图中的问题。
+
+![](.\img\5.jpg)
 
 图算法使用广泛
 
 拓扑序不是唯一的
 
 拓扑序需要一个队列，每个节点的入度为0，则入队列
+
