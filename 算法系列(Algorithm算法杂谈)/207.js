@@ -24,12 +24,44 @@
  * @param {number[][]} prerequisites
  * @return {boolean}
  */
+/**
+ * 出现闭环：不可以
+ */
 var canFinish = function(numCourses, prerequisites) {
-    let courseMap = new Map();
-    for(let i = 0; i < prerequisites.length; i++) {
-        let [a, b] = prerequisites[i]
-        if(courseMap.has(b) && courseMap.get(b).includes(a)) {
+    // 统计每个节点的入度
+    let indeg = new Array(numCourses).fill(0);
+    // 每一个点指向其他节点的集合
+    let g = new Array();
+    // 入度为0的节点，入队
+    let queue = [];
 
+    for(let x of prerequisites) {
+        // x[1] -> x[0]
+        indeg[x[0]] += 1;
+        if(!g[x[1]]) g[x[1]] = []
+        g[x[1]].push(x[0]);
+    }
+
+    for(let i = 0; i < numCourses; i++) {
+        if(indeg[i] === 0) queue.push(i)
+    }
+    
+    let cnt = 0;
+    while(queue.length) {
+        let ind = queue[0];
+        queue.shift()
+        cnt += 1;
+        if(g[ind]) {
+            for(let to of g[ind]) {
+                indeg[to] -= 1;
+                if(indeg[to] === 0) queue.push(to)
+            }
         }
     }
+    
+    return cnt === numCourses
 };
+
+let k = 5;
+let prerequisites = [[1, 0], [1, 2], [3, 1], [4, 1]]
+canFinish(k, prerequisites)
