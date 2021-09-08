@@ -43,7 +43,7 @@ var maximumGap = function(nums) {
             buf[--cnt[digit]] = nums[i];
         }
         
-        // 修改nums, 为buf
+        // nums 更新为 buf
         nums.splice(0, len, ...buf);
         exp *= 10;
     }
