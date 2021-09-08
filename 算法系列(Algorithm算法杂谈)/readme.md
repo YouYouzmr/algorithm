@@ -35,7 +35,46 @@
 
 **代码实现**
 
+```javascript
+// javascript
+function radix_sort(nums) {
+    let exp = 1;
+    const buf = new Array(len).fill(0);
+    const maxVal = Math.max(...nums);
+
+    while(maxVal >= exp) {
+        // 存储0-9出现的次数
+        const cnt = new Array(10).fill(0);
+        // 统计
+        for(let i = 0; i < len; i++) {
+            let digit = Math.floor(nums[i] / exp) % 10;
+            cnt[digit] += 1;
+        }
+
+        // 获取前缀和
+        for(let i = 1; i < 10; i++) {
+            cnt[i] += cnt[i - 1];
+        }
+
+        // 倒序放置
+        for(let i = len - 1; i >= 0; i--) {
+            let digit = Math.floor(nums[i] / exp) % 10;
+            buf[--cnt[digit]] = nums[i];
+        }
+        
+        // nums 更新为 buf
+        nums.splice(0, len, ...buf);
+        exp *= 10;
+    }
+    
+    return nums
+}
+```
+
+
+
 ``` c++
+// C++
 #define low16(a) ((a) & 0xffff);
 #define __high16(a) (((a) & 0xffff0000) >> 16);
 #defint high16(a) (__high16(a) > 32767 ? (__high16(a) - 32768) : (__high16(a) + 32768)); // 兼容负数
