@@ -13,27 +13,33 @@
  * @param {number[][]} intervals
  * @return {number[][]}
  */
-var merge = function(intervals) {
-    let buf = new Array(105).fill(0);
 
+var merge = function(intervals) {
+    let buf = [];
+    // 左端点 +1； 右端点 -1；
     for(let [start, end] of intervals) {
-        for(let i = start; i <= end; i++) {
-            buf[i] += 1
-        }
+        buf.push([start, 1])
+        buf.push([end, -1])
     }
 
-    let ret = [];
-    let i = 0
-    while(i < 105) {
-        if(buf[i] === 0) {
-            i++; 
-            continue;
-        }
+    // 左端点==右端点，第二位按升序排
+    // 否则按左端点升序排列
+    buf.sort((a, b) => {
+        if(a[0] - b[0]) return a[0] - b[0];
+        return b[1] - a[1]
+    })
 
-        let end = i;
-        while(buf[end]) end++;
-        ret.push([i, end-1]);
-        i = end
+    // 前缀加和，遇到0则位单独的一个区间
+    let pre = -1, sum = 0;
+    let ret = []
+    for(let i = 0; i < buf.length; i++) {
+        if(pre == -1) pre = buf[i][0]
+        sum += buf[i][1]
+
+        if(sum == 0) {
+            ret.push([pre, buf[i][0]])
+            pre = -1
+        }
     }
     
     return ret
