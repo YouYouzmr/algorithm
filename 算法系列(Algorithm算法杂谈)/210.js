@@ -23,5 +23,37 @@
  * @return {number[]}
  */
 var findOrder = function(numCourses, prerequisites) {
+    // 统计每个节点的入度
+    let indeg = new Array(numCourses).fill(0);
+    // 每一个点指向其他节点的集合
+    let g = new Array();
+    // 入度为0的节点，入队
+    let queue = [];
 
-};
+    for(let x of prerequisites) {
+        // x[1] -> x[0]
+        indeg[x[0]] += 1;
+        if(!g[x[1]]) g[x[1]] = []
+        g[x[1]].push(x[0]);
+    }
+
+    for(let i = 0; i < numCourses; i++) {
+        if(indeg[i] === 0) queue.push(i)
+    }
+    
+    let ret = []
+    while(queue.length) {
+        let ind = queue[0];
+        queue.shift()
+        ret.push(ind)
+        if(g[ind]) {
+            for(let to of g[ind]) {
+                indeg[to] -= 1;
+                if(indeg[to] === 0) queue.push(to)
+            }
+        }
+    }
+    
+    if(ret.length == numCourses) return ret
+    return []
+}
