@@ -52,7 +52,10 @@ void output_binary_process(int *arr, int n, int head, int tail, int mid) {
 int binary_search(int *arr, int n, int x) {
     int head = 0, tail = n - 1, mid;
     while (head <= tail) {
-        mid = (head + tail) >> 1;
+        // 存在越界问题
+        // mid = (head + tail) >> 1;
+        // 修改
+        mid = head + (tail - head) >> 1;
         output_binary_process(arr, n, head, tail, mid);
         if (arr[mid] == x) return mid;
         if (arr[mid] < x) head = mid + 1;
@@ -61,7 +64,7 @@ int binary_search(int *arr, int n, int x) {
     return -1;
 }
 
-// 获取谁技术
+// 获取随机数
 int *getRandData(int n) {
     int *arr = (int *)malloc(sizeof(int) * n);
     arr[0] = rand() % 10;
@@ -103,3 +106,57 @@ int main() {
 }
 ```
 
+``` c++
+// for 循环避免边界处理陷入死循环
+int binary_search(int *arr, int n, int x) {
+    int head = 0, tail = n - 1, mid;
+    while (tail - head > 3) {
+        // 存在越界问题
+        // mid = (head + tail) >> 1;
+        // 修改
+        mid = head + (tail - head) >> 1;
+        output_binary_process(arr, n, head, tail, mid);
+        if (arr[mid] == x) return mid;
+        if (arr[mid] < x) head = mid + 1;
+        else tail = mid - 1;
+    }
+    // 顺序遍历
+    for(int i = head; i <= tail; i++) {
+        if(arr[i] == x) return i
+    }
+    return -1;
+}
+```
+
+
+
+#### 泛型情况
+
+**0 1 模型：**查找第一个为1 的位置
+
+| 0    | 0    | 0    | 0    | 1    | 1    | 1    | 1    | 1    | 1    |
+| ---- | ---- | ---- | ---- | ---- | ---- | ---- | ---- | ---- | ---- |
+
+**1 0 模型：**查找最后一个 1 的位置，可以把1改成0， 0改成1
+
+| 1    | 1    | 1    | 1    | 1    | 0    | 0    | 0    | 0    | 0    |
+| ---- | ---- | ---- | ---- | ---- | ---- | ---- | ---- | ---- | ---- |
+
+```c++
+// 0 1 模型实现
+int binary_search_01(int *arr, int n, int x) {
+    int head = 0, tail = n - 1, mid;
+    while (head < tail) {
+        mid = head + (tail - head) >> 1;
+        if (arr[mid] < x) head = mid + 1;
+        else tail = mid;
+    }
+    return head;
+}
+```
+
+
+
+### 二分中的数组含函数关系
+
+f(x) 、arr[x] , 都是映射
