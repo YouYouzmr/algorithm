@@ -13,8 +13,8 @@
  * @param {number} target
  * @return {number[]}
  */
-// 找到第一个大于target的位置； 
-// 第一个大于等于x的位置
+
+// 第一个大于等于 target 的位置
 var binary_search = function(nums, target) {
     let head = 0, tail = nums.length -1, mid;
     while(tail - head > 3) {
