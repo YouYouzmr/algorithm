@@ -23,7 +23,7 @@
  */
 var binary_search_01 = function(nums, x) {
     let head = 0, tail = nums.length - 1, mid;
-    while(head <= tail) {
+    while(head < tail) {
         mid = (head + tail) >> 1;
         if(nums[mid] >= x) tail = mid;
         else head = mid + 1;
@@ -32,15 +32,18 @@ var binary_search_01 = function(nums, x) {
     return head;
 }
 var findRadius = function(houses, heaters) {
+    // 对加热器进行排序
     heaters.sort((a, b) => a - b);
+    
     let ans = 0;
     for(let x of houses) {
-        // 大于等于房子的位置
+        // 第一个大于等于当前房子的位置供暖期的索引值
         let j = binary_search_01(heaters, x);
         // 距 x 的距离
-        let a = abs(heaters[j] - x);
+        let a = Math.abs(heaters[j] - x);
         // 距离 前一个供暖期的距离
         let b = (j ? x - heaters[j - 1] : a + 1)
+        // 当前最小半径
         ans = Math.max(ans, Math.min(a, b))
     }
     return ans;
