@@ -19,10 +19,11 @@
  */
 var binary_search = function(nums, x) {
     let head = 0, tail = nums.length - 1, mid;
-    while(head <= tail) {
+
+    while(head < tail) {
         mid = (head + tail) >> 1;
         if(nums[mid] == x) return mid;
-        if(nums[mid] < x) head = mid + 1
+        if(nums[mid] < x) head = mid + 1;
         else tail = mid;
     }
 
@@ -51,6 +52,11 @@ var minOperations = function(nums, x) {
         // 第一次符合的， 最优解的处理
         if(ans == -1 || ans > i + j) ans = i + j;
     }
-
+    
     return ans;
 };
+
+let nums = [1,1,4,2,3]
+let target = 5
+
+minOperations(nums, target)
