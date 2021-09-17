@@ -30,7 +30,6 @@ var binary_search = function(nums, x) {
     return -1;
 }
 
-// 超时
 var minOperations = function(nums, x) {
     let len = nums.length;
     // 计算从左边开始的前缀和，右边的前缀和
