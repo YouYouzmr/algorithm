@@ -17,24 +17,44 @@
  * @return {boolean}
  */
 
-// 需要判断 mid 在后半段还是前半段 (前半段 < 后半段)
+// 需要判断 mid 在后半段还是前半段 (前半段 > 后半段)
 var search = function(nums, target) {
+    // 判断左右两边的值为target
     if(nums[0] === target || nums[nums.length - 1] === target) return true;
     let l = 0, r = nums.length - 1, mid, head, tail;
+    
+    // 左边找到第一个大于 nums[0] 的位置
     while(l < nums.length && nums[l] == nums[0]) ++l;
+    // 右边找到第一个小于 nums[0] 的位置
     while(r >=0 && nums[r] === nums[0]) --r;
+    // 重置head、 tail 
     head = l, tail = r;
-    while(l <= r) {
+
+    // 二分
+    while(r - l > 3) {
         mid = (l + r) >> 1;
         if(nums[mid] === target) return true;
+
+        // 判断如果中间值小于 tail 对应的值，则说明mid 处于后半段
         if(nums[mid] <= nums[tail]) {
+            // 判断 target 的区间位置
             if(target <= nums[tail] && target > nums[mid]) l = mid + 1;
             else r = mid;
-        } else {
-            if(target <= nums[mid] && target > nums[head]) r = mid;
+        } 
+        else {
+            if(target <= nums[mid] && target >= nums[head]) r = mid;
             else l = mid + 1;
         }
     }
 
+    for(let i = l; i <= r; i++) {
+        if(nums[i] === target) return true
+    }
+
     return false;
 };
+
+let nums = [1,0,1,1,1]
+let target = 0
+
+console.log(search(nums, target))
