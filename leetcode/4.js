@@ -16,7 +16,6 @@
  * @return {number}
  */
 
-let nums1 = [1, 3], nums2 = [2]
 // nums1[k/2] < nums2[k/2] 
 // nums1[k/2] 最多比 k-2个元素大，排名 k-1；
 // 二分算法： 二分的是问题规模
