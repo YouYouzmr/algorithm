@@ -19,14 +19,17 @@
 // nums1[k/2] < nums2[k/2] 
 // nums1[k/2] 最多比 k-2个元素大，排名 k-1；
 // 二分算法： 二分的是问题规模
-
+let nums1 = [5,6,7,8,9,10]
+let nums2 = [1,2,3,4]
 // 找到处于k位置的值
 var findK = function(nums1, nums2, i, j, k) {
     if(i == nums1.length) return nums2[j + k - 1];
     if(j == nums2.length) return nums1[i + k - 1];
     if(k == 1) return nums1[i] < nums2[j]? nums1[i] : nums2[j];
-    let a = Math.min(k >> 1, nums1.length);
-    let b = Math.min(k - a, nums2.length);
+    let a = Math.min(k >> 1, nums1.length - i);
+    // 对于数组2中可以处理的数据个数
+    let b = Math.min(k - a, nums2.length - j);
+    // a中可以处理的数据个数
     a = k - b;
     if(nums1[i + a - 1] <= nums2[j + b - 1]) {
         return findK(nums1, nums2, i + a, j, k - a);
@@ -40,7 +43,7 @@ var findMedianSortedArrays = function(nums1, nums2) {
     let a = findK(nums1, nums2, 0, 0, mid);
     if((n + m) % 2 == 1) return a;
     let b = findK(nums1, nums2, 0, 0, mid + 1)
-    return (a + b) >> 1;
+    return (a + b) / 2;
 }
 
 console.log(findMedianSortedArrays(nums1, nums2))
